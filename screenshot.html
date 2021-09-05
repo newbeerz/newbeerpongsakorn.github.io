@@ -6,6 +6,11 @@
 		How to take screenshot of
 		a div using JavaScript?
 	</title>
+	<meta property="og:title" content="! Share Facebook !">
+    <meta property="og:description" content="Test Picture" />
+    <meta property="og:image" content="https://wallpapercave.com/wp/GPmYovh.jpg">
+    <meta property="og:url" content="https://newbeerpongsakorn.github.io/screenshot.html" />
+    <meta property="og:type" content="website" />
 
 	<!-- Include from the CDN -->
 	<script src=
@@ -48,11 +53,14 @@
         <button onclick="share()">Post</button>
         <div id="fb-root"></div>
         <div class="fb-share-button" 
-    data-href="https://newbeerpongsakorn.github.io/changingcoin/Web/" 
+    data-href="https://newbeerpongsakorn.github.io/screenshot.html" 
     data-layout="button" id="shareFacebook">
     </div>
         <div id="post"></div>
     </div>
+	<div>
+		<img src="" id="checkImg">
+	</div>
 
 	<script type="text/javascript">
 
@@ -72,6 +80,9 @@
         async function share(){
 			var canvasElement = document.getElementById('image');
 			var dataUrl = canvasElement.toDataURL();
+			
+			// alert(dataUrl.replace(/^data:image\/(png|jpg);base64,/, ""));
+			
 
             document.getElementById('post').innerHTML = dataUrl;
 
@@ -91,7 +102,9 @@
 				files: filesArray,
 			};
 			console.log(shareData);
-			navigator.share(shareData);
+			document.querySelector("#checkImg").src = dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
+			// document.querySelector('meta[property="og:image"]').setAttribute("content", _desc);
+
         }
         
         function shareFacebook(d, s, id) {
