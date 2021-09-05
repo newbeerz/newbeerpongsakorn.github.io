@@ -102,8 +102,8 @@
 				files: filesArray,
 			};
 			console.log(shareData);
-			document.querySelector("#checkImg").src = dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
-			// document.querySelector('meta[property="og:image"]').setAttribute("content", _desc);
+			// document.querySelector("#checkImg").src = dataUrl;
+			document.querySelector('meta[property="og:image"]').setAttribute("content", dataUrl);
 
         }
         
