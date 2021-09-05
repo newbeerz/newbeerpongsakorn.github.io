@@ -84,6 +84,7 @@
 			document.getElementById('post').innerHTML = dataUrl;
 			document.querySelector("#checkImg").src = dataUrl;
 			document.querySelector('meta[property="og:image"]').setAttribute("content", "https://m.media-amazon.com/images/I/81A11CnquUL._AC_SL1500_.jpg");
+			document.querySelector('meta[property="og:title"]').setAttribute("content", "สวัสดีจร้า");
 
 			var file = dataURLtoFile(dataUrl, 'a.png');
 			console.log(file.type);
