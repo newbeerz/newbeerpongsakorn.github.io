@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		How to take screenshot of
+		a div using JavaScript?
+	</title>
+
+	<!-- Include from the CDN -->
+	<script src=
+"https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js">
+	</script>
+
+	<!-- Include locally otherwise -->
+	<!-- <script src='html2canvas.js'></script> -->
+
+	<style>
+		#photo {
+			border: 4px solid green;
+			padding: 4px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="photo">
+		<h1>GeeksforGeeks</h1>
+		Hello everyone! This is a
+		trial page for taking a
+		screenshot.
+		<br><br>
+		This is a dummy button!
+		<button> Dummy</button>
+		<br><br>
+		Click the button below to
+		take a screenshot of the div.
+		<br><br>
+
+	</div><br>
+    <button onclick="takeshot()">
+        Take Screenshot
+    </button>
+	<h1>Screenshot:</h1>
+	<div id="output"></div>
+    <h1>Share</h1>
+    <div>
+        <button onclick="share()">Post</button>
+        <div id="fb-root"></div>
+        <div class="fb-share-button" 
+    data-href="https://newbeerpongsakorn.github.io/changingcoin/Web/" 
+    data-layout="button" id="shareFacebook">
+    </div>
+        <div id="post"></div>
+    </div>
+
+	<script type="text/javascript">
+
+		// Define the function
+		// to screenshot the div
+		function takeshot() {
+			let div = document.getElementById('photo');
+
+			html2canvas(div, width=1, height=1).then(
+				function (canvas) {
+                    canvas.id = "image";
+					document.getElementById('output').appendChild(canvas);
+                    shareFacebook(document, 'script', 'facebook-jssdk');
+				})
+		}
+
+        async function share(){
+			var canvasElement = document.getElementById('image');
+			var dataUrl = canvasElement.toDataURL();
+
+            document.getElementById('post').innerHTML = dataUrl;
+
+			const blob = await (await fetch(dataUrl)).blob();
+			console.log(blob);
+			const filesArray = [
+				new File(
+				[blob],
+				'canvas.png',
+				{
+					type: blob.type,
+					lastModified: new Date().getTime()
+				}
+				)
+			];
+			const shareData = {
+				files: filesArray,
+			};
+			console.log(shareData);
+        }
+        
+        function shareFacebook(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+			// document.getElementById("shareFacebook").dataset.href = document.getElementById('image').toDataURL('image/png');
+        }
+	</script>
+</body>
+
+</html>
