@@ -50,7 +50,7 @@
 	<div id="output"></div>
     <h1>Share</h1>
     <div>
-        <button onclick="share()">Post</button>
+        <!-- <button onclick="share()">Post</button> -->
         <div id="fb-root"></div>
         <div class="fb-share-button" 
     data-href="https://newbeerpongsakorn.github.io/screenshot.html" 
@@ -75,6 +75,7 @@
 					document.getElementById('output').appendChild(canvas);
                     shareFacebook(document, 'script', 'facebook-jssdk');
 				})
+			share()
 		}
 
         async function share(){
